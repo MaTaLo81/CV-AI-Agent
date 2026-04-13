@@ -1,12 +1,20 @@
 # Vector search logic
 
-from langchain.vectorstores import FAISS
-from langchain.embeddings import OpenAIEmbeddings
+# deprecated: from langchain.vectorstores import FAISS
+from langchain_community.vectorstores import FAISS
 
-def load_vectorstore():
-    return FAISS.load_local("data/embeddings", OpenAIEmbeddings())
+# deprecated: from langchain.embeddings import OpenAIEmbeddings
+from langchain_community.embeddings import OpenAIEmbeddings
 
-def get_context(query):
-    vs = load_vectorstore()
-    docs = vs.similarity_search(query, k=3)
+from utils.config import OPENAI_API_KEY
+
+embeddings = OpenAIEmbeddings(openai_api_key=OPENAI_API_KEY)
+vectorstore = FAISS.load_local(
+    "data/embeddings",
+    embeddings,
+    allow_dangerous_deserialization=True
+)
+
+def get_context(query):    
+    docs = vectorstore.similarity_search(query, k=3)
     return "\n".join([d.page_content for d in docs])
