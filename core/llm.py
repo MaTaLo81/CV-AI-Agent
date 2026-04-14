@@ -11,4 +11,7 @@ openai_api_key=OPENAI_API_KEY
 
 def generate_answer(query, context):
     prompt = BASE_PROMPT.format(context=context, question=query)
-    return llm.predict(prompt)
+    # deprecated: return llm.predict(prompt)
+    response = llm.invoke(prompt)
+    return response.content
+    
