@@ -1,5 +1,13 @@
+
+import logging
+
 import os
 from dotenv import load_dotenv
+
+LOG_LEVEL = logging.DEBUG
+logging.basicConfig(level=LOG_LEVEL)
+logger = logging.getLogger(__name__)
+
 
 load_dotenv()
 

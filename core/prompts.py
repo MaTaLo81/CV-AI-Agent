@@ -1,5 +1,11 @@
 # Prompt templates
 
+import logging
+from utils.config import LOG_LEVEL
+
+logging.basicConfig(level=LOG_LEVEL)
+logger = logging.getLogger(__name__)
+
 BASE_PROMPT = """
 You are Marcos' professional AI assistant.
 

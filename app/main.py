@@ -1,14 +1,18 @@
 # Entry point
 
-#import sys
-#import os
+import logging
+from utils.config import LOG_LEVEL
+
+logging.basicConfig(level=LOG_LEVEL)
+logger = logging.getLogger(__name__)
+
 import streamlit as st
 from core.agent import ask_agent
 
 st.set_page_config(
     page_title="Marcos AI Professional Agent!",
     page_icon="💼",
-    layout="wide",
+    #layout="wide",
 )
 
 st.caption("🧪 BETA!")

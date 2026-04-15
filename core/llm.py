@@ -1,5 +1,11 @@
 # LLM wrapper
 
+import logging
+from utils.config import LOG_LEVEL
+
+logging.basicConfig(level=LOG_LEVEL)
+logger = logging.getLogger(__name__)
+
 # deprecated: from langchain.chat_models import ChatOpenAI
 from langchain_community.chat_models import ChatOpenAI
 

@@ -1,5 +1,11 @@
 # Vector search logic
 
+import logging
+from utils.config import LOG_LEVEL
+
+logging.basicConfig(level=LOG_LEVEL)
+logger = logging.getLogger(__name__)
+
 # deprecated: from langchain.vectorstores import FAISS
 from langchain_community.vectorstores import FAISS
 

@@ -1,5 +1,11 @@
 # ingestion/embed.py
 
+import logging
+from utils.config import LOG_LEVEL
+
+logging.basicConfig(level=LOG_LEVEL)
+logger = logging.getLogger(__name__)
+
 from ingestion.loader import load_text
 from ingestion.chunking import chunk_text
 

@@ -1,5 +1,11 @@
 # Main orchestration
 
+import logging
+from utils.config import LOG_LEVEL
+
+logging.basicConfig(level=LOG_LEVEL)
+logger = logging.getLogger(__name__)
+
 from core.retriever import get_context
 from core.llm import generate_answer
 
