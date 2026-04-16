@@ -1,6 +1,11 @@
 # app/main.py
 # Entry point
 
+# Add project root to Python path so modules (e.g., utils, core) can be imported when running via Streamlit
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
 import logging
 from utils.config import LOG_LEVEL
 

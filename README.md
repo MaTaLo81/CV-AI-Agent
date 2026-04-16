@@ -10,9 +10,13 @@ An AI-powered assistant that allows recruiters and collaborators to explore the 
 
 ---
 
-## 🚀 Live Demo
+## 🚀 Live demo:
 
 👉 https://marcos-cv-agent.streamlit.app
+
+## The public repo:
+  
+👉 https://github.com/MaTaLo81/CV-AI-Agent
 
 ---
 
@@ -105,3 +109,126 @@ Feel free to ask follow-up questions to clarify any details.
 ## 📌 Versions
 
 v1.0 – Initial release
+
+---
+
+## 🛠️ Setup & Run Instructions
+
+Follow these steps to run the project locally:
+⚠️ Note: This project requires an OpenAI API key.
+
+---
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/MaTaLo81/marcos-cv-agent.git
+cd marcos-cv-agent
+```
+
+---
+
+### 2. Create required folder structure
+
+```bash
+mkdir -p data/embeddings
+mkdir -p data/processed
+mkdir -p data/raw
+```
+
+---
+
+### 3. Create environment variables
+
+Create a `.env` file in the root directory:
+
+```text
+OPENAI_API_KEY=sk-...
+```
+
+---
+
+### 4. Create and activate a virtual environment (recommended)
+
+```bash
+python -m venv venv
+```
+
+Activate it:
+
+* **Windows (Git Bash):**
+
+```bash
+source venv/Scripts/activate
+```
+
+* **Windows (CMD):**
+
+```bash
+venv\Scripts\activate
+```
+
+* **Mac/Linux:**
+
+```bash
+source venv/bin/activate
+```
+
+---
+
+### 5. Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+### 6. Add your CV
+
+Place your CV (in `.txt` format) inside:
+
+```text
+data/raw/
+```
+
+Then update the path in:
+
+```python
+# ingestion/embed.py
+DATA_PATH = "data/raw/your_cv.txt"
+```
+
+---
+
+### 7. Generate embeddings
+
+```bash
+python -m ingestion.embed
+```
+
+---
+
+### 8. Configure your profile
+
+Update your personal information in:
+
+```text
+utils/config.py
+```
+
+---
+
+### 9. Run the app
+
+```bash
+streamlit run app/main.py
+```
+
+---
+
+### 🎉 Done!
+
+Open your browser and start interacting with your AI assistant.
+
+Have fun exploring your AI-powered CV 🚀
