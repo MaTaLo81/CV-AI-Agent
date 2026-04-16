@@ -14,15 +14,11 @@ from langchain_community.vectorstores import FAISS
 from langchain_openai import OpenAIEmbeddings
 
 from utils.config import OPENAI_API_KEY
-from utils.config import DATA_PATH
 
 from pathlib import Path
 
-EMBEDDINGS_PATH = "data/embeddings"
-
-import shutil
-import os
-
+# Path to the source data (CV/profile) used to generate embeddings
+DATA_PATH_CV_TXT = "data/raw/CV Marcos Taboada 20260415 1548.txt"
 
 def clean_text(text):
     return " ".join(text.split())
@@ -30,32 +26,32 @@ def clean_text(text):
 
 def main():
 
-    print("🔹 Loading data...")
-    if not Path(DATA_PATH).exists():
-      raise FileNotFoundError(f"❌ Input file not found: {DATA_PATH}")
-    text = load_text(DATA_PATH)
+    logging.info("🔹 Loading data...")    
+    if not Path(DATA_PATH_CV_TXT).exists():
+      raise FileNotFoundError(f"❌ Input file not found: {DATA_PATH_CV_TXT}")
+    text = load_text(DATA_PATH_CV_TXT)
 
-    print("🔹 Cleaning text...")
+    logging.info("🔹 Cleaning text...")    
     text = clean_text(text)
 
-    print("🔹 Chunking text...")
+    logging.info("🔹 Chunking text...")    
     chunks = chunk_text(text)
     if not chunks:
       raise ValueError("❌ No chunks generated from input data.")
-    print(f"🔹 Number of chunks: {len(chunks)}")
+    logging.info(f"🔹 Number of chunks: {len(chunks)}")    
 
     for i, c in enumerate(chunks[:3]):
-      print(f"\n--- Chunk {i} ---\n{c}")
+      logging.debug(f"\n--- Chunk {i} ---\n{c}")      
 
-    print("🔹 Creating embeddings (this may take a few seconds)...")
+    logging.info("🔹 Creating embeddings (this may take a few seconds)...")
     embeddings = OpenAIEmbeddings(openai_api_key=OPENAI_API_KEY)
 
     vectorstore = FAISS.from_texts(chunks, embeddings)
 
-    print("🔹 Saving vectorstore...")
+    logging.info("🔹 Saving vectorstore...")
     vectorstore.save_local("data/embeddings")
 
-    print("✅ Embeddings created successfully!")
+    logging.info("✅ Embeddings created successfully!")
 
 
 if __name__ == "__main__":

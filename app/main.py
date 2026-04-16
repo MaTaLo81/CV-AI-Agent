@@ -1,3 +1,4 @@
+# app/main.py
 # Entry point
 
 import logging
@@ -9,23 +10,29 @@ logger = logging.getLogger(__name__)
 import streamlit as st
 from core.agent import ask_agent
 
+from utils.config import (
+    APP_VERSION,
+    CANDIDATE_NAME,
+    CANDIDATE_FULL_NAME,
+    CANDIDATE_LINKEDIN,
+    CANDIDATE_GITHUB,
+)
+
 st.set_page_config(
-    page_title="Marcos AI Professional Agent!",
+    page_title=f"{CANDIDATE_FULL_NAME} AI Professional Agent!",
     page_icon="💼",
     #layout="wide",
 )
 
-st.caption("🧪 BETA!")
+st.caption(f"🧪 BETA! {APP_VERSION}")
 
-st.title("Marcos’ AI Profile Agent")
+st.title(f"{CANDIDATE_NAME}’ AI Professional Agent")
 
-query = st.text_input("Ask me anything about Marcos")
+query = st.text_input(f"Ask me anything about {CANDIDATE_NAME}")
 
 if query:
     response = ask_agent(query)
     st.write(response)
-
-#st.info("I'm an AI assistant trained on Marcos’ experience. I try to be helpful—but like any assistant, I might occasionally miss context 🙂")
 
 st.caption(
     "This AI assistant was created as a personal project for learning and exploration."
@@ -33,16 +40,11 @@ st.caption(
     "Feel free to ask follow-up questions."
 )
 
+st.markdown(f"""
+### About {CANDIDATE_FULL_NAME}
 
-# st.sidebar.markdown("### 👤 Marcos")
-# st.sidebar.markdown(
-#     "[🔗 LinkedIn](https://www.linkedin.com/in/marcostaboadalorenzo/)"
-# )
-
-st.markdown("""
-### About Marcos Taboada Lorenzo
-
-🔗 [LinkedIn Profile](https://www.linkedin.com/in/marcostaboadalorenzo/)
+🔗 [LinkedIn Profile]({CANDIDATE_LINKEDIN})
+🔗 [GitHub]({CANDIDATE_GITHUB})
 
 Feel free to connect or explore my professional background in more detail.
 """)

@@ -1,3 +1,4 @@
+# core/prompts.py
 # Prompt templates
 
 import logging
