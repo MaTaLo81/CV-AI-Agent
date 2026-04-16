@@ -122,7 +122,7 @@ Follow these steps to run the project locally:
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/MaTaLo81/marcos-cv-agent.git
+git clone https://github.com/MaTaLo81/CV-AI-Agent.git
 cd marcos-cv-agent
 ```
 
